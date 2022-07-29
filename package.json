@@ -1,0 +1,33 @@
+{
+  "name": "nonstop_squad_generator",
+  "version": "1.0.0",
+  "description": "Webpage generator that takes in and displays employee squad information for easy reference.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bekind-rewind/nonstop_squad_generator.git"
+  },
+  "keywords": [
+    "page",
+    "generator",
+    "team",
+    "employee",
+    "manager"
+  ],
+  "author": "Amanda Perry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bekind-rewind/nonstop_squad_generator/issues"
+  },
+  "homepage": "https://github.com/bekind-rewind/nonstop_squad_generator#readme",
+  "dependencies": {
+    "inquirer": "^9.0.2",
+    "jest": "^28.1.3"
+  }
+}

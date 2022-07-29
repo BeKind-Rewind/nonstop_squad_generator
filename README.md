@@ -40,7 +40,7 @@ video can be found here:
 
 
 ## Installation
-Clone the GitHub; npm install; run [node index.js] to begin 
+Clone the GitHub; node.js install; npm install; npm init; run [node index.js] to begin 
 
 
 

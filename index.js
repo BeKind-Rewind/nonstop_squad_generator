@@ -2,7 +2,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateSquad = require('./src/page-template');
-const { writeFile, copyFile } = require('./util/generate-site');
 
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");

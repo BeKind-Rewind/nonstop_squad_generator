@@ -140,7 +140,7 @@ const promptTeam = async () => {
         answers.name, 
         answers.id, 
         answers.email, 
-        answers.school
+        internAns.school
       );
         employeeArr.push(newIntern);
     }

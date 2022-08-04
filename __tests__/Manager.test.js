@@ -8,9 +8,7 @@ test("creates an Manager Object", () => {
     expect(manager.email).toBe("dave@gmail.com");
     expect(manager.officeNumber).toBe("614-352-3789");
 
-
 });
-
 
 test("testing for Role()", ()=>{
     var testValue = "Manager";
@@ -19,3 +17,9 @@ test("testing for Role()", ()=>{
 
 })
 
+test("testing for getOfficeNumber()", ()=>{
+    var testValue = "614-352-3789";
+    var manager = new Manager("Dave", 4, "dave@gmail.com", testValue);
+    expect(manager.getOfficeNumber()).toBe(testValue);
+
+})

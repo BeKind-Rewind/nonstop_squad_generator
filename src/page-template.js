@@ -1,139 +1,88 @@
-const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
-const Manager = require("../lib/Manager");
-
 // create the projects section
-const generateEmployees = employeeArr => {
+const generateEmployees = squad => {
+   // create the manager html
+   const generateManager = (manager) => {
     return `
-      <section class="my-3" id="rolladex">
-        <h2 class="text-dark bg-primary p-2 display-inline-block">Employee Squad Rolladex</h2>
-        <div class="flex-row justify-space-between">
-        ${employeeArr
-            .filter(({ Manager }) => Manager)
-            .map(({ name, id, email, officeNumber }) => {
-                return `
-                    <div class="col-12 mb-2 bg-dark text-light p-3">
-                        <h3 class="rolladex-item-title text-light">
-                            ${name}
-                        </h3>
-                        <h4 class="rolladex-role">
-                            Manager
-                        </h4>
-
-                        <br>
-
-                        <h5 class="rolladex-id">
-                            ID: ${id}
-                        </h5>
-
-                        <br>
-
-                        <h4 class="rolladex-email">
-                            Email: ${email}
-                            <a href="mailto:${email}"><img src="ICON2.png"></a>
-                        </h4>
-
-                        <br>
-
-                        <h4 class="rolladex-officeNumber">
-                            Office Number: ${officeNumber}
-                        </h4>
-              
-                    </div>
-                `;
-            })
-            .join('')
-        }
-  
-        ${employeeArr
-            .filter(({ role }) => Intern)
-            .map(({ name, id, email, school }) => {
-                return `
-                    <div class="col-12 mb-2 bg-dark text-light p-3">
-                        <h3 class="rolladex-item-title text-light">
-                            ${name}
-                        </h3>
-                        <h4 class="rolladex-role" id="role">
-                            Intern
-                        </h4>
-
-                        <br>
-
-                        <h5 class="rolladex-id" id="id">
-                            ID: ${id}
-                        </h5>
-
-                        <br>
-
-                        <h4 class="rolladex-email" id="email">
-                            Email: ${email}
-                            <a href="mailto:${email}"><img src="ICON2.png"></a>
-                        </h4>
-
-                        <br>
-
-                        <h4 class="rolladex-school" id="school">
-                            School: ${school}
-                        </h4>
-              
-                    </div>
-                `;
-            })
-            .join('')
-        }
-
-        ${employeeArr
-            .filter(({ role }) => Engineer)
-            .map(({ name, id, email, gitHub }) => {
-                return `
-                    <div class="col-12 mb-2 bg-dark text-light p-3">
-                        <h3 class="rolladex-item-title text-light">
-                            ${name}
-                        </h3>
-                        <h4 class="rolladex-role">
-                            Engineer
-                        </h4>
-
-                        <br>
-
-                        <h5 class="rolladex-id">
-                            ID: ${id}
-                        </h5>
-
-                        <br>
-
-                        <h4 class="rolladex-email">
-                            Email: ${email}
-                            <a href="mailto:${email}"><img src="ICON2.png"></a>
-                        </h4>
-
-                        <br>
-
-                        <h4 class="rolladex-gitHub">
-                            GitHub: <a href="https://github.com/${gitHub}">${gitHub}</a>
-                        </h4>
-              
-                    </div>
-                `;
-            })
-            .join('')
-        }
+        <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${manager.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
         </div>
-      </section>
-    `;
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${manager.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+            </ul>
+        </div>
+    </div>
+        `;
   };
+
+  // create the html for engineers
+  const generateEngineer = (engineer) => {
+    return `
+        <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${engineer.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: ${engineer.getId()}</li>
+            <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
+        </ul>
+    </div>
+</div>
+        `;
+  };
+
+  // create the html for interns
+  const generateIntern = (intern) => {
+    return `
+        <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${intern.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: ${intern.getId()}</li>
+            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+            <li class="list-group-item">School: ${intern.getSchool()}</li>
+        </ul>
+    </div>
+</div>
+        `;
+  };
+
+  const html = [];
+
+  html.push(
+    squad
+      .filter((employee) => employee.getRole() === "Manager")
+      .map((manager) => generateManager(manager))
+  );
+  html.push(
+    squad
+      .filter((employee) => employee.getRole() === "Engineer")
+      .map((engineer) => generateEngineer(engineer))
+      .join("")
+  );
+  html.push(
+    squad
+      .filter((employee) => employee.getRole() === "Intern")
+      .map((intern) => generateIntern(intern))
+      .join("")
+  );
+
+  return html.join("");
+};
   
   
   
-  
-  module.exports = templateData => {
-    console.log(templateData);
-    // destructure projects and about data from templateData based on their property key names
-    // this will create three variables based on data in templateData
-    const { employees, name, id, } = templateData;
-    console.log(employees);
-    // console.log(about);
-    // console.log(header);
+  module.exports = (squad) => {
     
     return `
     <!DOCTYPE html>
@@ -143,27 +92,28 @@ const generateEmployees = employeeArr => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Employee Rolladex</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-      <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="style.css">
-    </head>
-    
-    <body>
-      <header>
-        <div class="container flex-row justify-space-between align-center py-3">
-          <h1 class="page-title text-secondary bg-dark py-2 px-3">Employee Team Rolladex</h1>
-          <nav class="flex-row">
-   
-          </nav>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 jumbotron mb-3 team-heading">
+                <h1 class="text-center">The Squad</h1>
+            </div>
         </div>
-      </header>
-      <main class="container my-5">
-        ${generateEmployees(employees)}
-      </main>
-      <footer class="container text-center py-3">
-        <h3 class="text-dark">Est. 2022</h3>
-      </footer>
-    </body>
-    </html>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="team-area col-12 d-flex justify-content-center">
+                ${generateEmployees(squad)}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
     `;
   };

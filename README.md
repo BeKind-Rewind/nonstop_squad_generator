@@ -97,9 +97,10 @@ https://drive.google.com/file/d/1j-YqgBvROqMf9tmHOI8aMSw_sZTiiDAG/view
 ## Screenshot
 
 ![NonStop Squad Generator Screenshot with a set of cards with employee information](./images/screenshot.png)
+
 ## Installation
 Clone the GitHub; node.js install; npm install; npm init; run [node index.js] to begin 
-
+https://github.com/BeKind-Rewind/nonstop_squad_generator
 
 ## Questions
 
